@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AplikasiCatatan">
         <activity
-            android:name=".ui.addupdate.NoteActivity"
+            android:name=".ui.note.NoteActivity"
             android:exported="true" />
         <activity
             android:name=".ui.home.HomeActivity"

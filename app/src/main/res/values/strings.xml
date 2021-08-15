@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Aplikasi Catatan</string>
     <string name="proyek_1">Proyek 1</string>
+    <string name="hint_input_file_name">Nama File</string>
+    <string name="hint_description">Catatan</string>
+    <string name="save">Simpan</string>
+    <string name="hapus">Hapus</string>
+    <string name="error_empty_note">Catatan tidak ada</string>
+    <string name="update_note_title">Ubah Catatan</string>
+    <string name="add_note_title">Tambah Catatan</string>
+    <string name="alert_exit_title">Keluar</string>
+    <string name="alert_exit_Message">Apakah yakin ingin keluar</string>
+    <string name="alert_update_Message">Apakah yakin ingin mengubah catatan</string>
+    <string name="alert_save_Message">Apakah yakin ingin menyimpan catatan</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
 </resources>
