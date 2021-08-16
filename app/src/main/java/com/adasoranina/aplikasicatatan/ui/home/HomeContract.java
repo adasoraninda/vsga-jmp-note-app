@@ -1,5 +1,7 @@
 package com.adasoranina.aplikasicatatan.ui.home;
 
+import android.content.Context;
+
 import androidx.annotation.StringRes;
 
 import com.adasoranina.aplikasicatatan.model.Note;
@@ -15,13 +17,15 @@ public interface HomeContract {
 
         void dismissLoading();
 
-        void showMessage(@StringRes int resMessage);
+        void showMessage(String message);
+
+        Context getContext();
     }
 
     interface Presenter {
-        void checkNote(Note note);
-
         void getNotes();
+
+        int deleteNote(Note note);
     }
 
 }

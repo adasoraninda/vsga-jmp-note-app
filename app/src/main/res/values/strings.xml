@@ -14,4 +14,22 @@
     <string name="alert_save_Message">Apakah yakin ingin menyimpan catatan</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
+
+    <string name="alert_delete_notes">Hapus Catatan</string>
+    <string name="alert_delete_notes_message">Apakah Anda Yakin Ingin Menghapus Catatan %s</string>
+    <string name="permission_granted">Izin Diberikan</string>
+    <string name="permission_denied">Izin Ditolak</string>
+    <string name="file_not_found">File Tidak Ditemukan</string>
+    <string name="folder_not_found">Folder Tidak Ditemukan</string>
+    <string name="file_fail_mounted">File Gagal Dipasang</string>
+
+    <string name="file_name_invalid">Nama File Tidak Valid</string>
+    <string name="file_description_invalid">Deskripsi File Tidak Valid</string>
+
+    <string name="sucess_add_note">Berhasil Menyimpan Catatan</string>
+    <string name="sucess_delete_note">Berhasil Menghapus Catatan</string>
+    <string name="fail_delete_note">Gagal Menghapus Catatan</string>
+    <string name="fail_add_note">Gagal Menyimpan Catatan</string>
+
+    <string name="fail_read_note">Gagal Mendapatkan Catatan</string>
 </resources>

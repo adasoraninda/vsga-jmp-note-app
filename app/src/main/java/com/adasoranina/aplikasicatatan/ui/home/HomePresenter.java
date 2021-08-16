@@ -4,8 +4,8 @@ import static com.adasoranina.aplikasicatatan.ui.home.HomeContract.Presenter;
 import static com.adasoranina.aplikasicatatan.ui.home.HomeContract.View;
 
 import com.adasoranina.aplikasicatatan.R;
+import com.adasoranina.aplikasicatatan.model.ExternalFile;
 import com.adasoranina.aplikasicatatan.model.Note;
-import com.adasoranina.aplikasicatatan.util.NoteDummyRes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,35 +13,47 @@ import java.util.List;
 public class HomePresenter implements Presenter {
 
     private final View view;
-    private final List<Note> allNotes = new ArrayList<>();
+    private final ExternalFile externalFile;
+    private final List<Note> allNotes;
 
     public HomePresenter(View view) {
         this.view = view;
-        allNotes.addAll(NoteDummyRes.getListNotes());
-
-        getNotes();
+        externalFile = new ExternalFile(view.getContext());
+        allNotes = new ArrayList<>();
     }
 
     @Override
     public void getNotes() {
         view.showLoading();
 
-        view.getNotes(allNotes);
+        try {
+            List<Note> newNotes = externalFile.getListFiles();
 
-        if (allNotes.isEmpty()) {
-            view.showMessage(R.string.error_empty_note);
+            if (newNotes.isEmpty()) {
+                view.showMessage(view.getContext().getString(R.string.error_empty_note));
+            } else {
+                this.allNotes.clear();
+                allNotes.addAll(newNotes);
+                view.getNotes(allNotes);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            view.showMessage(e.getMessage());
         }
 
         view.dismissLoading();
     }
 
     @Override
-    public void checkNote(Note note) {
-        int index = allNotes.indexOf(note);
-        note.setChecked(!note.getChecked());
+    public int deleteNote(Note note) {
+        int position = allNotes.indexOf(note);
 
-        allNotes.set(index, note);
+        if (externalFile.deleteFile(note.getFileName()) && allNotes.remove(note)) {
+            view.getNotes(allNotes);
+            return position;
+        }
 
-        view.getNotes(allNotes);
+        return -1;
     }
 }

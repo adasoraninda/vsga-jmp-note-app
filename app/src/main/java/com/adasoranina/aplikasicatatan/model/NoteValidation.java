@@ -1,11 +1,13 @@
 package com.adasoranina.aplikasicatatan.model;
 
 public class NoteValidation {
-    private Note note;
 
-    public NoteValidation(Note note) {
-        this.note = note;
+    public static boolean validateFileName(String fileName) {
+        return fileName != null && !fileName.isEmpty();
     }
 
+    public static boolean validateFileDesc(String description) {
+        return description != null && !description.isEmpty();
+    }
 
 }

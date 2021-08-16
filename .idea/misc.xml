@@ -11,10 +11,15 @@
         <entry key="..\:/DATA-DEDA/vsga-jmp-polban/AplikasiCatatan/app/src/main/res/layout/activity_note.xml" value="0.20416666666666666" />
         <entry key="..\:/DATA-DEDA/vsga-jmp-polban/AplikasiCatatan/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/DATA-DEDA/vsga-jmp-polban/AplikasiCatatan/app/src/main/res/layout/item_note.xml" value="0.2" />
+        <entry key="..\:/vsga-jmpa/tugas-project/vsga-jmp-note-app/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/vsga-jmpa/tugas-project/vsga-jmp-note-app/app/src/main/res/layout/activity_note.xml" value="0.17962962962962964" />
+        <entry key="..\:/vsga-jmpa/tugas-project/vsga-jmp-note-app/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/vsga-jmpa/tugas-project/vsga-jmp-note-app/app/src/main/res/layout/item_note.xml" value="0.20416666666666666" />
+        <entry key="..\:/vsga-jmpa/tugas-project/vsga-jmp-note-app/app/src/main/res/menu/menu_home.xml" value="0.1925925925925926" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
