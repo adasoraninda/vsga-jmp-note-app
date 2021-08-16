@@ -15,7 +15,11 @@
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
 
+    <string name="delete_directory">Hapus Folder</string>
+
     <string name="alert_delete_notes">Hapus Catatan</string>
+    <string name="alert_delete_directory">Hapus Folder</string>
+    <string name="alert_delete_directory_message">Apakah Anda Yakin Ingin Menghapus Folder</string>
     <string name="alert_delete_notes_message">Apakah Anda Yakin Ingin Menghapus Catatan %s</string>
     <string name="permission_granted">Izin Diberikan</string>
     <string name="permission_denied">Izin Ditolak</string>
@@ -32,4 +36,6 @@
     <string name="fail_add_note">Gagal Menyimpan Catatan</string>
 
     <string name="fail_read_note">Gagal Mendapatkan Catatan</string>
+    <string name="fail_delete_folder">Gagal Menghapus Folder</string>
+    <string name="success_delete_folder">Berhasil Menghapus Folder</string>
 </resources>

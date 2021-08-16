@@ -8,6 +8,7 @@ import com.adasoranina.aplikasicatatan.model.ExternalFile;
 import com.adasoranina.aplikasicatatan.model.Note;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HomePresenter implements Presenter {
@@ -55,5 +56,12 @@ public class HomePresenter implements Presenter {
         }
 
         return -1;
+    }
+
+    @Override
+    public boolean deleteDirectory() {
+        this.allNotes.clear();
+        view.getNotes(allNotes);
+        return externalFile.deleteDirectory();
     }
 }

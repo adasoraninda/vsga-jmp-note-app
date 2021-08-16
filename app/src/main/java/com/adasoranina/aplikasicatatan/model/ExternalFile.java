@@ -80,7 +80,9 @@ public class ExternalFile {
         File directory = new File(getPath());
 
         if (!directory.exists()) {
-            throw new Exception(context.getString(R.string.folder_not_found));
+            if (!directory.mkdirs()) {
+                throw new Exception(context.getString(R.string.folder_not_found));
+            }
         }
 
         File file = new File(getPath(), fileName);
@@ -111,6 +113,23 @@ public class ExternalFile {
             return file.delete();
         }
 
+        return false;
+    }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public boolean deleteDirectory() {
+        File directory = new File(getPath());
+        if (directory.exists() && directory.isDirectory()) {
+            String[] content = directory.list();
+
+            if (content != null) {
+                for (String c : content) {
+                    new File(directory, c).delete();
+                }
+            }
+
+            return directory.delete();
+        }
         return false;
     }
 

@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -19,7 +22,6 @@ import com.adasoranina.aplikasicatatan.model.Note;
 import com.adasoranina.aplikasicatatan.ui.note.NoteActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.Collections;
 import java.util.List;
 
 import pub.devrel.easypermissions.EasyPermissions;
@@ -59,6 +61,30 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         super.onResume();
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_delete_dir).setVisible(!noteAdapter.getCurrentList().isEmpty());
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = new MenuInflater(this);
+        menuInflater.inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_delete_dir) {
+            showAlertDialog(
+                    getString(R.string.alert_delete_directory),
+                    getString(R.string.alert_delete_directory_message),
+                    null);
+        }
+        return true;
+    }
+
     private void requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             EasyPermissions
@@ -88,7 +114,10 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
             @Override
             public void onLongItemClick(@Nullable Note note) {
                 if (note != null) {
-                    showAlertDialog(note);
+                    showAlertDialog(
+                            getString(R.string.alert_delete_notes),
+                            String.format(getString(R.string.alert_delete_notes_message), note.getFileName()),
+                            note);
                 }
             }
         });
@@ -105,12 +134,28 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         }
     }
 
-    private void showAlertDialog(Note note) {
+    @SuppressLint("NotifyDataSetChanged")
+    private void deleteDirectory() {
+        if (presenter.deleteDirectory()) {
+            showMessage(getString(R.string.success_delete_folder));
+            presenter.getNotes();
+            noteAdapter.notifyDataSetChanged();
+        } else {
+            showMessage(getString(R.string.fail_delete_folder));
+        }
+    }
+
+    private void showAlertDialog(String title, String message, @Nullable Note note) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle(R.string.alert_delete_notes)
-                .setMessage(String.format(getString(R.string.alert_delete_notes_message), note.getFileName()))
+        dialog.setTitle(title)
+                .setMessage(message)
                 .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
-                    deleteNote(note);
+                    if (note == null) {
+                        deleteDirectory();
+                    } else {
+                        deleteNote(note);
+                    }
+
                     dialogInterface.dismiss();
                 })
                 .setNegativeButton(R.string.no, (dialogInterface, i) -> {
@@ -128,6 +173,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void getNotes(List<Note> allNotes) {
+        supportInvalidateOptionsMenu();
+
         if (allNotes.isEmpty()) {
             showMessage(getString(R.string.error_empty_note));
             return;

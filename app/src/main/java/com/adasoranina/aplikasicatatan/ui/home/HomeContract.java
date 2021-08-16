@@ -26,6 +26,8 @@ public interface HomeContract {
         void getNotes();
 
         int deleteNote(Note note);
+
+        boolean deleteDirectory();
     }
 
 }
